@@ -42,8 +42,8 @@ public class BookingService {
                 .orElseThrow(() -> new RuntimeException("Concert not found"));
         // look up the concert (or crash if it doesn't exist)
 
-        // compute total price -- set total price to 0
-        booking.setTotalPrice(BigDecimal.ZERO);
+        // compute total price
+        booking.setTotalPrice(concert.getTicketPrice().multiply(BigDecimal.valueOf(booking.getNumberOfTickets())));
 
         // set available seats - number of tickets
         concert.setAvailableSeats(concert.getAvailableSeats() - booking.getNumberOfTickets());
